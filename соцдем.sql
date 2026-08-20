@@ -1,5 +1,5 @@
 
-#Анализируем соц. дем. показатели 
+#Распределение по полу и возрасту всех пользователей, которым показывалась наша реклама
 SELECT sex.sex, age.age, SUM(vision_test.display) AS count_show,
     ROUND(SUM(vision_test.display) OVER (PARTITION BY sex.sex) * 100.0 / SUM(vision_test.display) OVER (), 2)  AS percent_too
 FROM vision_test 
