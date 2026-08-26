@@ -30,7 +30,7 @@ SELECT sex, ROUND(AVG(conversions) *100.0, 2) AS avg_conversions
 FROM vision_test
 GROUP BY sex;
 
-#Среднее число конверсий по месту показа 
+#Среднее число конверсий по месту показа (Оконная функция)
 SELECT placement, text, 
 	ROUND(AVG(sum_conv) OVER(PARTITION BY placement), 2) AS avg_conv_by_plcmnt
 FROM
