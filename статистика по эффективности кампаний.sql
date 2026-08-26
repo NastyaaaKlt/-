@@ -24,3 +24,8 @@ LIMIT 30;
 select avg_display_pos, SUM(conversions) AS sum_display
 FROM vision_test
 GROUP BY avg_display_pos;
+
+#Распределение среднего количества конверсий по полу
+SELECT sex, ROUND(AVG(conversions) *100.0, 2) AS avg_conversions
+FROM vision_test
+GROUP BY sex;
