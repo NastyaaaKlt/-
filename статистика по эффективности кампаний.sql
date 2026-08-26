@@ -4,7 +4,7 @@ SELECT company_direct.name_company AS company, SUM(display) AS count_display,
 	SUM(clicks) AS count_clicks,
     SUM(consumption) AS count_consumption,
     SUM(conversions) AS count_conversions,
-    ROUND(SUM(clicks)*100.0/SUM(display), 2) as str,
+    ROUND(SUM(clicks)*100.0/SUM(display), 2) AS str,
     ROUND(SUM(consumption)/SUM(conversions), 2) AS cpa
 FROM vision_test 
 	INNER JOIN company_direct ON vision_test.company = company_direct.id_company
@@ -13,7 +13,7 @@ GROUP BY company;
 
 #Статистика по запросам
 SELECT keywords, SUM(display) AS count_display_keywords, SUM(clicks) AS count_clicks, SUM(conversions) AS count_conversion, 
-ROUND(SUM(clicks)*100.0/SUM(display), 2) as STR
+ROUND(SUM(clicks)*100.0/SUM(display), 2) AS STR
 FROM vision_test
 GROUP BY keywords
 ORDER BY count_conversion DESC
@@ -39,4 +39,4 @@ FROM
 		SUM(conversions) AS sum_conv
 	FROM vision_test
 	GROUP BY placement, text
-	ORDER BY placement) as table_1;
+	ORDER BY placement) AS table_1;
