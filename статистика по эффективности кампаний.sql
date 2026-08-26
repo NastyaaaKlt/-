@@ -9,3 +9,12 @@ SELECT company_direct.name_company AS company, SUM(display) AS count_display,
 FROM vision_test 
 	INNER JOIN company_direct ON vision_test.company = company_direct.id_company
 GROUP BY company;
+
+
+#Статистика по запросам
+SELECT keywords, SUM(display) AS count_display_keywords, SUM(clicks) AS count_clicks, SUM(conversions) AS count_conversion, 
+ROUND(SUM(clicks)*100.0/SUM(display), 2) as STR
+FROM vision_test
+GROUP BY keywords
+ORDER BY count_conversion DESC
+LIMIT 30;
