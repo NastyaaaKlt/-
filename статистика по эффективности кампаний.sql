@@ -35,7 +35,6 @@ SELECT placement, text,
 	ROUND(AVG(sum_conv) OVER(PARTITION BY placement), 2) AS avg_conv_by_plcmnt
 FROM
 	(SELECT placement, text,
-		SUM(display) AS sum_display,
 		SUM(conversions) AS sum_conv
 	FROM vision_test
 	GROUP BY placement, text
