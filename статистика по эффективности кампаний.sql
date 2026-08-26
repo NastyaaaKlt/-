@@ -18,3 +18,9 @@ FROM vision_test
 GROUP BY keywords
 ORDER BY count_conversion DESC
 LIMIT 30;
+
+
+#На каких позициях показов чаще бывают конверсии
+select avg_display_pos, SUM(conversions) AS sum_display
+FROM vision_test
+GROUP BY avg_display_pos;
