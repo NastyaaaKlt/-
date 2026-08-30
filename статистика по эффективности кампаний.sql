@@ -30,12 +30,21 @@ SELECT sex, ROUND(AVG(conversions) *100.0, 2) AS avg_conversions
 FROM vision_test
 GROUP BY sex;
 
-#Среднее число конверсий по месту показа (Оконная функция)
-SELECT placement, text, 
+#Среднее число конверсий по месту показа (Оконная функция).С помощью нее мы видим, 
+	что большая часть показов пришлась на Спецразмещение и не зря, так как в среднем конверсия у данного места 
+	в Поиске оказалась выше, чем у Прочего, Эксклюзивного размещения и Рекламы в саджесте, 
+	а STR у большинства заголовков объявлений выше, чем на других площадках.
+	
+SELECT placement, text, sum_display, sum_clicks, ROUND((sum_clicks*100.0/sum_display), 2) as str,
+	ROUND(SUM(sum_display) OVER(PARTITION BY placement), 2) AS sum_display,
 	ROUND(AVG(sum_conv) OVER(PARTITION BY placement), 2) AS avg_conv_by_plcmnt
 FROM
 	(SELECT placement, text,
+     	SUM(display) AS sum_display,
+     	SUM(clicks) AS sum_clicks,
 		SUM(conversions) AS sum_conv
 	FROM vision_test
 	GROUP BY placement, text
-	ORDER BY placement) AS table_1;
+	ORDER BY placement) as table_1
+ ORDER BY sum_display DESC;
+
