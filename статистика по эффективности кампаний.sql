@@ -1,5 +1,6 @@
 
-#Статистика по кампаниям
+#Статистика по кампаниям, благодаря которой мы видим, какие кампании были более успешными 
+	(например, "Проверка зрения МОЛОДЕЖЬ Поиск Копия 23.06")
 SELECT company_direct.name_company AS company, SUM(display) AS count_display, 
 	SUM(clicks) AS count_clicks,
     SUM(consumption) AS count_consumption,
